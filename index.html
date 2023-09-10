@@ -56,5 +56,20 @@
             <td>5-7 hours</td>
         </tr>
     </table>
+    <h2>Code Fencing</h2>
+    <hr>
+    <blockquote>
+        <p>How to stop WordPress cropping my post thumbnail?</p>
+        <p>Link to <a href="https://stackoverflow.com/questions/47138951/how-to-stop-wordpress-cropping-my-post-thumbnail">Stack Overflow</a> (source)</p>
+    </blockquote>
+    <pre style="background-color: #f4f4f4;padding: 10px;font-size: 14px;">
+        add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
+        add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
+
+        function remove_width_attribute( $html ) {
+            $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+            return $html;
+        }
+    </pre>    
 </body>
 </html>
